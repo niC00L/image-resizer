@@ -40,6 +40,14 @@ def resize(width, height, files):
       Cheight = int((float(img.size[1]) * float(Pwidth)))
       img = img.resize((width, Cheight), PIL.Image.ANTIALIAS)
       img.save('resized_'+image)
+
+    else:
+      width = int(width)
+      height = int(height)
+      img = Image.open(image)
+      img = img.resize((width, height), PIL.Image.ANTIALIAS)
+      img.save('resized_'+image)
+      
     
   print 'All resized'
   exit()
