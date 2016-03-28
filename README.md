@@ -19,4 +19,4 @@ python resizer.py <width> <height> <path> <filetypes>
 * **height** - Desired height of resized image. If you want it calculated type 'x'
 * You can't leave both width and height as 'x'
 * **path** - Path to folder with images. If you want to use current folder, type 'x', else type absolute path i.e.:C:\Users\admin\Pictures. If your path contains space, put it inside quotation marks
-* **filetypes** - File extensions you want to resize. By default script resizes .jpg, .jpeg, .png, .bmp and .gif files. If you want to resize certain filetypes type them as tuple, i.e.: ('.jpg', '.png')
+* **filetypes** - File extensions you want to resize. By default script resizes .jpg, .jpeg, .png, .bmp and .gif files. If you want to resize certain filetypes type them as tuple, i.e.: ('.jpg', '.png'), else leave blank.
