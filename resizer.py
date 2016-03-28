@@ -52,7 +52,7 @@ def resize(width, height, files, directory):
       img = Image.open(directory+'/'+image)
       Iwidth = img.size[0]
       Iheight = img.size[1]
-      if (Iwidth-width < Iheight-height): #if image is vertical
+      if (abs(Iwidth-width) > abs(Iheight-height)):
         Pwidth = (width / float(Iwidth))
         Cheight = int((float(Iheight) * float(Pwidth)))
         img = img.resize((width, Cheight), PIL.Image.ANTIALIAS)
