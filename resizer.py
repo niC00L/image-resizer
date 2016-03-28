@@ -2,7 +2,7 @@ import os, sys, PIL
 from PIL import Image
 """
 you will need PIL to use this script
-USAGE: in cmd python resizer.py width height path filetypes
+USAGE: python resizer.py <width> <height> <path> <filetypes>
 
 width = desired width of image n px. If you want it calculated type x
 height = desired height of image n px. If you want it calculated type x
@@ -26,13 +26,17 @@ def resize(width, height, files, directory):
     exit()
 
   for image in files:
+    newDir = directory+'/resized'
+    if not os.path.exists(newDir):
+      os.makedirs(newDir)
+    
     if width == 'x':
       height = int(height)
       img = Image.open(directory+'/'+image)
       Pheight = (height / float(img.size[1]))
       Cwidth = int((float(img.size[0]) * float(Pheight)))
       img = img.resize((Cwidth, height), PIL.Image.ANTIALIAS)
-      img.save(directory+'/resized_'+image)
+      img.save(newDir+'/resized_'+image)
       
     elif height == 'x':
       width = int(width)
@@ -40,14 +44,23 @@ def resize(width, height, files, directory):
       Pwidth = (width / float(img.size[0]))
       Cheight = int((float(img.size[1]) * float(Pwidth)))
       img = img.resize((width, Cheight), PIL.Image.ANTIALIAS)
-      img.save(directory+'/resized_'+image)
+      img.save(newDir+'/resized_'+image)
 
     else:
       width = int(width)
-      height = int(height)
+      height = int(height)      
       img = Image.open(directory+'/'+image)
-      img = img.resize((width, height), PIL.Image.ANTIALIAS)
-      img.save(directory+'/resized_'+image)
+      Iwidth = img.size[0]
+      Iheight = img.size[1]
+      if (Iwidth-width < Iheight-height): #if image is vertical
+        Pwidth = (width / float(Iwidth))
+        Cheight = int((float(Iheight) * float(Pwidth)))
+        img = img.resize((width, Cheight), PIL.Image.ANTIALIAS)
+      else:
+        Pheight = (height / float(Iheight))
+        Cwidth = int((float(Iwidth) * float(Pheight)))
+        img = img.resize((Cwidth, height), PIL.Image.ANTIALIAS)
+      img.save(newDir+'/resized_'+image)
         
   print 'All resized'
   exit()
