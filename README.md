@@ -12,7 +12,7 @@ Resized images are in subfolder named 'resized'. Their names start with 'resized
 ```
 #!python
 
-python resizer.py <width> <height> <path> <filetypes>
+python resizer.py <path> <width> <height> <filetypes>
 ```
 
 * **width** - Desired max width of resized image. If you want it calculated type 'x'
